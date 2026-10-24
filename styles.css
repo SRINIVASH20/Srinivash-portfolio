@@ -931,3 +931,22 @@ body {
     background: rgba(255, 215, 0, 0.3);
     color: white;
 }
+/* Resume update additions */
+.timeline-content p:not(.institution) {
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.project-links {
+    flex-wrap: wrap;
+}
+
+.skill-tag {
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}

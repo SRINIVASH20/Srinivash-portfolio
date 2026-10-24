@@ -780,3 +780,177 @@ dt {
         display: none;
     }
 }
+
+/* ==========================================================
+   CSS animations (no JavaScript)
+   All motion below is skipped when the visitor prefers reduced motion.
+   ========================================================== */
+
+/* Links and buttons: small, direct feedback (safe to keep for everyone) */
+.project-links a {
+    text-decoration: none;
+    padding-bottom: 2px;
+    background:
+        linear-gradient(var(--amber), var(--amber)) 0 100% / 0 3px no-repeat,
+        linear-gradient(var(--teal), var(--teal)) 0 100% / 100% 2px no-repeat;
+    transition: background-size 0.3s ease, color 0.2s ease;
+}
+
+.project-links a:hover {
+    background-size: 100% 3px, 100% 2px;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+    /* 1. Hero entrance: one orchestrated sequence on page load.
+          "backwards" (not "both") so hover transforms still work afterwards. */
+    .hero-copy > * {
+        animation: hero-rise 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+    }
+
+    .hero-copy > :nth-child(1) { animation-delay: 0.05s; }
+    .hero-copy > :nth-child(2) { animation-delay: 0.15s; }
+    .hero-copy > :nth-child(3) { animation-delay: 0.30s; }
+    .hero-copy > :nth-child(4) { animation-delay: 0.45s; }
+    .hero-copy > :nth-child(5) { animation-delay: 0.60s; }
+
+    @keyframes hero-rise {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    /* 2. Hero card swings in with depth, then tilts toward the pointer on hover */
+    .hero-figure {
+        transform-origin: 50% 60%;
+        transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.5s ease;
+        animation: card-in 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s backwards;
+    }
+
+    .hero-figure:hover {
+        transform: perspective(1000px) rotateY(-5deg) rotateX(3deg) translateY(-4px);
+        box-shadow: 14px 14px 0 var(--ink);
+    }
+
+    @keyframes card-in {
+        from {
+            opacity: 0;
+            transform: perspective(1000px) rotateY(-16deg) rotateX(7deg) translateY(24px);
+        }
+        to {
+            opacity: 1;
+            transform: perspective(1000px) rotateY(0) rotateX(0) translateY(0);
+        }
+    }
+
+    /* 3. "Open to work" dot pulses once in a while */
+    .availability li:first-child::before {
+        animation: ping 2.4s ease-out 1.5s infinite;
+    }
+
+    @keyframes ping {
+        0% { box-shadow: 0 0 0 0 rgba(242, 169, 0, 0.6); }
+        70% { box-shadow: 0 0 0 10px rgba(242, 169, 0, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(242, 169, 0, 0); }
+    }
+
+    /* 4. Buttons lift on hover */
+    .btn {
+        transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease,
+                    transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 0 rgba(18, 48, 56, 0.18);
+    }
+
+    .btn:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+    /* 5. Mobile menu drops in when opened (answers a tap, so it is welcome) */
+    .site-nav.open {
+        animation: menu-drop 0.22s ease-out;
+    }
+
+    @keyframes menu-drop {
+        from {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    /* 6. Skill and education rows: amber marker slides in on hover */
+    .skill-rows div,
+    .edu-list li {
+        transition: padding-left 0.25s ease, background-color 0.25s ease;
+    }
+
+    .skill-rows div:hover,
+    .edu-list li:hover {
+        padding-left: 0.75rem;
+        background-color: rgba(242, 169, 0, 0.1);
+    }
+
+    /* 7. Scroll-driven effects, only in browsers that support them */
+    @supports (animation-timeline: scroll()) {
+
+        /* Reading progress line under the sticky header */
+        .site-header::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            height: 3px;
+            background: var(--amber);
+            transform-origin: 0 50%;
+            transform: scaleX(0);
+            animation: read-progress linear both;
+            animation-timeline: scroll(root block);
+        }
+
+        @keyframes read-progress {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        /* Section titles get an amber rule that draws as they scroll into view */
+        .block h2::after {
+            content: "";
+            display: block;
+            width: 2.75rem;
+            height: 3px;
+            margin-top: 0.7rem;
+            background: var(--amber);
+            transform-origin: 0 50%;
+            animation: rule-draw linear both;
+            animation-timeline: view();
+            animation-range: entry 10% entry 90%;
+        }
+
+        .contact h2::after {
+            background: var(--amber);
+        }
+
+        @keyframes rule-draw {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+    }
+}

@@ -15,6 +15,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <script>
+        (function () {
+            var t = null;
+            try { t = localStorage.getItem('theme'); } catch (e) {}
+            if (t !== 'dark' && t !== 'light') {
+                t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
     <link rel="stylesheet" href="styles.css">
     <script type="application/ld+json">
     {
@@ -36,7 +46,6 @@
     <header class="site-header" id="top">
         <div class="wrap header-row">
             <a class="brand" href="#top">Srinivash K</a>
-            <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
             <nav class="site-nav" id="siteNav" aria-label="Main">
                 <ul>
                     <li><a href="#projects">Projects</a></li>
@@ -47,6 +56,14 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            <div class="header-tools">
+                <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+                    <span class="sr-only">Dark theme</span>
+                    <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a8.5 8.5 0 1 0 10.8 10.8z" fill="currentColor"/></svg>
+                    <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M5.3 18.7L7 17M17 7l1.7-1.7"/></g></svg>
+                </button>
+                <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav">Menu</button>
+            </div>
         </div>
     </header>
 
@@ -282,7 +299,11 @@
                 <h2 id="contact-h">Contact</h2>
                 <div class="block-body">
                     <p class="contact-lede">I'm looking for my first full-time developer role. If you have an opening, email me and I'll reply quickly.</p>
-                    <a class="contact-mail" href="mailto:srinivash20042002@gmail.com">srinivash20042002@gmail.com</a>
+                    <div class="contact-mail-row">
+                        <a class="contact-mail" href="mailto:srinivash20042002@gmail.com">srinivash20042002@gmail.com</a>
+                        <button class="copy-btn" id="copyEmail" type="button" data-email="srinivash20042002@gmail.com">Copy email</button>
+                        <span class="copy-status" id="copyStatus" role="status" aria-live="polite"></span>
+                    </div>
                     <ul class="contact-list">
                         <li><span>Phone</span> <a href="tel:+916374407328">+91 63744 07328</a></li>
                         <li><span>GitHub</span> <a href="https://github.com/SRINIVASH20" target="_blank" rel="noopener">github.com/SRINIVASH20</a></li>
@@ -301,26 +322,7 @@
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="main.js" defer></script>
     <script src="scene.js" defer></script>
-    <script>
-        (function () {
-            var toggle = document.getElementById('menuToggle');
-            var nav = document.getElementById('siteNav');
-            function setOpen(open) {
-                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-                nav.classList.toggle('open', open);
-            }
-            toggle.addEventListener('click', function () {
-                setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-            });
-            nav.addEventListener('click', function (e) {
-                if (e.target.tagName === 'A') { setOpen(false); }
-            });
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') { setOpen(false); }
-            });
-        })();
-    </script>
 </body>
 </html>

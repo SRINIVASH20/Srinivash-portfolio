@@ -70,6 +70,7 @@
                 </div>
 
                 <figure class="hero-figure">
+                    <div class="stage" id="stage">
                     <svg class="forecast" viewBox="0 0 560 330" role="img" aria-labelledby="fcTitle fcDesc">
                         <title id="fcTitle">Illustration of an electricity demand forecast</title>
                         <desc id="fcDesc">A line chart of actual electricity demand with a dashed predicted line that continues into a shaded forecast window.</desc>
@@ -92,7 +93,13 @@
                         <text class="fc-tick" x="360" y="282" text-anchor="middle">Now</text>
                         <text class="fc-tick" x="540" y="282" text-anchor="end">Next 6 to 168 hours</text>
                     </svg>
-                    <figcaption>Illustration of the actual-versus-predicted view in EnergySmart. Not real data.</figcaption>
+                    </div>
+                    <ul class="stage-legend" aria-hidden="true">
+                        <li><i class="sw sw-actual"></i>Actual use</li>
+                        <li><i class="sw sw-forecast"></i>Forecast</li>
+                        <li class="hint">Move your pointer over the chart</li>
+                    </ul>
+                    <figcaption>Illustration of the demand forecast view in EnergySmart: 168 hourly bars, 7 days by 24 hours. Not real data.</figcaption>
                 </figure>
             </div>
         </section>
@@ -294,6 +301,8 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="scene.js" defer></script>
     <script>
         (function () {
             var toggle = document.getElementById('menuToggle');

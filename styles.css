@@ -1520,3 +1520,166 @@ html.js .reveal.in {
 .sw-forecast {
     background: linear-gradient(135deg, var(--fc-lo), var(--fc-hi));
 }
+
+
+/* ==========================================================
+   Profile photo: hero avatar and About portrait
+   ========================================================== */
+@property --spin {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+.hero-role {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.avatar {
+    flex: none;
+    width: 56px;
+    height: 56px;
+    padding: 3px;
+    border-radius: 50%;
+    background: conic-gradient(from var(--spin), var(--teal), var(--violet), var(--coral), var(--amber), var(--teal));
+    box-shadow: 0 6px 16px color-mix(in srgb, var(--violet) 30%, transparent);
+}
+
+.avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 18%;
+    border: 2px solid var(--paper);
+}
+
+#about .block-body {
+    max-width: 58rem;
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.portrait {
+    position: relative;
+    margin: 0;
+}
+
+.portrait::before {
+    content: "";
+    position: absolute;
+    inset: 8% -8% -6% 10%;
+    z-index: 0;
+    border-radius: 40% 40% 24px 24px;
+    background: linear-gradient(150deg, var(--violet), var(--coral) 60%, var(--amber));
+    opacity: 0.28;
+    filter: blur(26px);
+}
+
+.portrait-ring {
+    position: relative;
+    z-index: 1;
+    padding: 5px;
+    border-radius: 999px 999px 26px 26px;
+    background: conic-gradient(from var(--spin), var(--teal), var(--violet), var(--coral), var(--amber), var(--teal));
+    box-shadow: 0 18px 36px color-mix(in srgb, var(--violet) 22%, transparent);
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.4s ease;
+}
+
+.portrait-ring img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 12%;
+    border-radius: 999px 999px 22px 22px;
+    border: 3px solid var(--paper);
+    background: var(--paper-deep);
+}
+
+.portrait:hover .portrait-ring {
+    transform: translateY(-6px) rotate(-1.2deg);
+    box-shadow: 0 26px 46px color-mix(in srgb, var(--coral) 26%, transparent);
+}
+
+.portrait-badge {
+    position: absolute;
+    z-index: 2;
+    left: -0.6rem;
+    bottom: 1.4rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--card);
+    border: 1.5px solid var(--rule);
+    border-radius: 999px;
+    box-shadow: 0 8px 20px rgba(18, 48, 56, 0.16);
+}
+
+.portrait-badge i {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--pine, #178A5C);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .avatar,
+    .portrait-ring {
+        animation: ring-spin 9s linear infinite;
+    }
+
+    @keyframes ring-spin {
+        to { --spin: 360deg; }
+    }
+
+    .portrait-badge i {
+        animation: ping-green 2.4s ease-out infinite;
+    }
+
+    @keyframes ping-green {
+        0% { box-shadow: 0 0 0 0 rgba(23, 138, 92, 0.55); }
+        70% { box-shadow: 0 0 0 9px rgba(23, 138, 92, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(23, 138, 92, 0); }
+    }
+
+    .portrait {
+        animation: portrait-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+        animation-timeline: view();
+        animation-range: entry 0% entry 55%;
+    }
+
+    @keyframes portrait-in {
+        from { opacity: 0; transform: translateY(28px) scale(0.96); }
+        to { opacity: 1; transform: none; }
+    }
+}
+
+@media (max-width: 760px) {
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .portrait {
+        width: min(15rem, 72%);
+        margin: 0 auto;
+    }
+
+    .portrait-badge {
+        left: -0.4rem;
+    }
+}

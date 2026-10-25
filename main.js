@@ -14,7 +14,15 @@
         return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
     }
 
+    var fadeTimer = 0;
+
     function applyTheme(theme, save) {
+        // Fade colours smoothly, but only for a moment after a deliberate switch.
+        if (save !== undefined && root.getAttribute('data-theme') !== theme) {
+            root.classList.add('theme-fade');
+            window.clearTimeout(fadeTimer);
+            fadeTimer = window.setTimeout(function () { root.classList.remove('theme-fade'); }, 700);
+        }
         root.setAttribute('data-theme', theme);
         if (themeMeta) { themeMeta.setAttribute('content', THEME_COLORS[theme]); }
         if (themeButton) {
@@ -148,6 +156,45 @@
             } else {
                 announce(fallbackCopy(email) ? 'Email copied' : 'Copy failed. Select the address and copy it.');
             }
+        });
+    }
+
+    /* ---------- Scroll reveal (staggered, one time only) ---------- */
+    root.classList.add('reveal-ready');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.reveal');
+
+    if (reduce || !('IntersectionObserver' in window)) {
+        Array.prototype.forEach.call(items, function (el) { el.classList.remove('reveal'); });
+    } else {
+        var seen = new WeakMap();
+        var reveal = new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) { return; }
+                var el = entry.target;
+                obs.unobserve(el);
+                var siblings = Array.prototype.filter.call(el.parentNode.children, function (c) {
+                    return c.classList.contains('reveal');
+                });
+                el.style.setProperty('--i', Math.min(siblings.indexOf(el), 6));
+                el.classList.add('in');
+                // Hand the element back to normal styles so hover effects are not delayed.
+                window.setTimeout(function () {
+                    el.classList.remove('reveal', 'in');
+                    el.style.removeProperty('--i');
+                }, 1500);
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+        Array.prototype.forEach.call(items, function (el) { reveal.observe(el); });
+    }
+
+    /* ---------- Hero light follows the pointer ---------- */
+    var heroEl = document.querySelector('.hero');
+    if (heroEl && window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        heroEl.addEventListener('pointermove', function (e) {
+            var rect = heroEl.getBoundingClientRect();
+            heroEl.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+            heroEl.style.setProperty('--my', (e.clientY - rect.top) + 'px');
         });
     }
 })();

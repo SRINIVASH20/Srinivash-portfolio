@@ -1099,3 +1099,424 @@ dt {
         margin-left: 0;
     }
 }
+
+/* ==========================================================
+   Colour system v2: one accent per area, tinted sections,
+   soft colour glows, chips, and smooth transitions
+   ========================================================== */
+:root {
+    --violet: #5B3FD1;
+    --coral: #D9482B;
+    --sky: #1B74CC;
+    --pine: #178A5C;
+}
+
+:root[data-theme="dark"] {
+    --violet: #B2A1FF;
+    --coral: #FF8F70;
+    --sky: #6DB8FF;
+    --pine: #4FD6A0;
+}
+
+/* Chips */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.chips li {
+    --c: var(--teal);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.3;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    color: var(--ink);
+    background: color-mix(in srgb, var(--c) 14%, var(--card));
+    border: 1px solid color-mix(in srgb, var(--c) 45%, transparent);
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.chips li:hover {
+    transform: translateY(-2px);
+    background: color-mix(in srgb, var(--c) 30%, var(--card));
+    border-color: var(--c);
+}
+
+.skill-rows > div:nth-child(1) .chips li { --c: var(--teal); }
+.skill-rows > div:nth-child(2) .chips li { --c: var(--sky); }
+.skill-rows > div:nth-child(3) .chips li { --c: var(--violet); }
+.skill-rows > div:nth-child(4) .chips li { --c: var(--pine); }
+.skill-rows > div:nth-child(5) .chips li { --c: var(--coral); }
+.skill-rows > div:nth-child(6) .chips li { --c: var(--amber); }
+.skill-rows > div:nth-child(7) .chips li { --c: var(--sky); }
+
+.stack {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+}
+
+.stack span {
+    margin-right: 0;
+}
+
+.stack .chips li {
+    --c: var(--accent, var(--teal));
+}
+
+/* Projects: each one carries its own colour */
+.project--energy { --accent: var(--amber); }
+.project--chat { --accent: var(--violet); }
+.project--iot { --accent: var(--coral); }
+
+.project {
+    position: relative;
+    padding: 1.75rem 1.75rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--rule);
+    border-left: 6px solid var(--accent, var(--teal));
+    border-radius: 14px;
+    background: var(--card);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.project:last-child {
+    padding-bottom: 1.5rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--rule);
+}
+
+.project:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px -14px color-mix(in srgb, var(--accent, var(--teal)) 60%, transparent);
+}
+
+.project-points li::before {
+    background: var(--accent, var(--teal));
+}
+
+.project-links a {
+    background:
+        linear-gradient(var(--accent, var(--amber)), var(--accent, var(--amber))) 0 100% / 0 3px no-repeat,
+        linear-gradient(var(--teal), var(--teal)) 0 100% / 100% 2px no-repeat;
+}
+
+/* Dates as small coloured tags */
+.role-when,
+.edu-when {
+    align-self: start;
+    width: max-content;
+    max-width: 100%;
+    padding: 0.2rem 0.65rem;
+    border-radius: 6px;
+    color: var(--ink);
+    background: color-mix(in srgb, var(--teal) 16%, var(--card));
+}
+
+.role:nth-child(2) .role-when { background: color-mix(in srgb, var(--violet) 16%, var(--card)); }
+.edu-list li:nth-child(1) .edu-when { background: color-mix(in srgb, var(--sky) 18%, var(--card)); }
+.edu-list li:nth-child(2) .edu-when { background: color-mix(in srgb, var(--violet) 16%, var(--card)); }
+.edu-list li:nth-child(3) .edu-when { background: color-mix(in srgb, var(--pine) 18%, var(--card)); }
+.edu-list li:nth-child(4) .edu-when { background: color-mix(in srgb, var(--coral) 16%, var(--card)); }
+
+/* Section tints and heading rules */
+#projects { --sec: var(--amber); }
+#experience { --sec: var(--teal); background: color-mix(in srgb, var(--teal) 7%, var(--paper)); }
+#about { --sec: var(--violet); }
+#skills { --sec: var(--coral); background: color-mix(in srgb, var(--violet) 7%, var(--paper)); }
+#education { --sec: var(--sky); background: color-mix(in srgb, var(--sky) 7%, var(--paper)); }
+
+.block h2::after {
+    background: var(--sec, var(--amber));
+}
+
+.site-header::after {
+    background: linear-gradient(90deg, var(--teal), var(--violet), var(--coral), var(--amber));
+}
+
+.facts div:nth-child(1) dt { color: var(--violet); }
+.facts div:nth-child(2) dt { color: var(--sky); }
+.facts div:nth-child(3) dt { color: var(--coral); }
+
+/* Hero: soft colour glows behind everything */
+.hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    z-index: -1;
+    background:
+        radial-gradient(40% 45% at 12% 18%, color-mix(in srgb, var(--teal) 24%, transparent), transparent 70%),
+        radial-gradient(34% 40% at 88% 22%, color-mix(in srgb, var(--amber) 28%, transparent), transparent 70%),
+        radial-gradient(40% 45% at 72% 92%, color-mix(in srgb, var(--violet) 22%, transparent), transparent 70%),
+        radial-gradient(30% 36% at 18% 92%, color-mix(in srgb, var(--coral) 18%, transparent), transparent 70%);
+}
+
+/* Buttons: gradient wipe on hover */
+.btn-solid {
+    background-color: var(--ink);
+    background-image: linear-gradient(120deg, var(--teal), var(--violet));
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    transition: background-size 0.45s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-solid:hover {
+    background-color: var(--ink);
+    background-image: linear-gradient(120deg, var(--teal), var(--violet));
+    background-size: 100% 100%;
+    border-color: transparent;
+    color: var(--paper);
+}
+
+.btn-line:hover {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+/* Contact band: deep gradient with colour glows */
+.contact {
+    background:
+        radial-gradient(60% 90% at 92% 8%, color-mix(in srgb, var(--violet) 38%, transparent), transparent 62%),
+        radial-gradient(55% 80% at 4% 100%, color-mix(in srgb, var(--teal) 42%, transparent), transparent 62%),
+        var(--band);
+}
+
+.copy-btn:hover {
+    background: var(--amber);
+}
+
+/* Smooth colour change when the theme is switched */
+html.theme-fade,
+html.theme-fade *,
+html.theme-fade *::before,
+html.theme-fade *::after {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease,
+                fill 0.5s ease, stroke 0.5s ease, box-shadow 0.5s ease !important;
+}
+
+/* Scroll reveal: only hidden when main.js is running, see the head script */
+html.js .reveal {
+    opacity: 0;
+    translate: 0 28px;
+    transition: opacity 0.7s ease, translate 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+html.js .reveal.in {
+    opacity: 1;
+    translate: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .hero::before {
+        animation: glow-drift 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow-drift {
+        from { transform: translate3d(-2%, 2%, 0) scale(1); }
+        to { transform: translate3d(3%, -3%, 0) scale(1.1) rotate(3deg); }
+    }
+
+    .project-points li {
+        transition: transform 0.2s ease;
+    }
+
+    .project:hover .project-points li {
+        transform: translateX(3px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.js .reveal {
+        opacity: 1;
+        translate: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .project {
+        padding: 1.25rem 1.1rem 1.1rem;
+        border-left-width: 5px;
+    }
+}
+
+/* ==========================================================
+   Hero backdrop, name gradient, button sheen, contact band
+   (builds on the Colour system v2 tokens above)
+   ========================================================== */
+:root {
+    --bar-lo: #86C5F4;
+    --bar-hi: #4B3FC7;
+    --fc-lo: #FFCB57;
+    --fc-hi: #F0522E;
+    --band-from: #0E2A31;
+    --band-to: #2A2866;
+}
+
+:root[data-theme="dark"] {
+    --bar-lo: #2F6FB3;
+    --bar-hi: #B7AEFF;
+    --fc-lo: #C98600;
+    --fc-hi: #FF7A59;
+    --band-from: #08161A;
+    --band-to: #1D1B4A;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero-bg i {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.4;
+}
+
+.hero-bg i:nth-child(1) {
+    width: 34rem;
+    height: 34rem;
+    left: -9rem;
+    top: -10rem;
+    background: radial-gradient(circle, var(--teal), transparent 68%);
+}
+
+.hero-bg i:nth-child(2) {
+    width: 30rem;
+    height: 30rem;
+    right: -6rem;
+    top: 2rem;
+    background: radial-gradient(circle, var(--violet), transparent 68%);
+}
+
+.hero-bg i:nth-child(3) {
+    width: 26rem;
+    height: 26rem;
+    left: 38%;
+    bottom: -12rem;
+    background: radial-gradient(circle, var(--coral), transparent 68%);
+}
+
+:root[data-theme="dark"] .hero-bg i {
+    opacity: 0.28;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(26rem circle at var(--mx, 70%) var(--my, 30%), rgba(242, 169, 0, 0.16), transparent 70%);
+}
+
+.hero h1 {
+    background: linear-gradient(100deg, var(--ink) 0%, var(--ink) 30%, var(--teal) 58%, var(--violet) 80%, var(--coral) 100%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    padding-bottom: 0.08em;
+}
+
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-solid {
+    background: linear-gradient(120deg, var(--ink), var(--teal));
+}
+
+.btn-solid::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.35) 50%, transparent 65%);
+    transform: translateX(-120%);
+}
+
+.btn-line:hover {
+    background: linear-gradient(120deg, var(--violet), var(--coral));
+    border-color: transparent;
+    color: #fff;
+}
+
+.contact {
+    background: linear-gradient(135deg, var(--band-from) 0%, var(--band-from) 35%, var(--band-to) 100%);
+    background-size: 160% 160%;
+}
+
+.site-footer {
+    background: var(--band-from);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .hero-bg i:nth-child(1) { animation: drift-a 16s ease-in-out infinite alternate; }
+    .hero-bg i:nth-child(2) { animation: drift-b 19s ease-in-out infinite alternate; }
+    .hero-bg i:nth-child(3) { animation: drift-c 22s ease-in-out infinite alternate; }
+
+    @keyframes drift-a { to { transform: translate(7rem, 5rem) scale(1.12); } }
+    @keyframes drift-b { to { transform: translate(-6rem, 7rem) scale(0.9); } }
+    @keyframes drift-c { to { transform: translate(-8rem, -4rem) scale(1.15); } }
+
+    .hero h1 {
+        animation: hero-rise 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) backwards,
+                   name-shift 9s ease-in-out 1s infinite alternate;
+    }
+
+    @keyframes name-shift {
+        from { background-position: 0% 50%; }
+        to { background-position: 100% 50%; }
+    }
+
+    .btn-solid:hover::after { animation: sheen 0.7s ease; }
+    @keyframes sheen { to { transform: translateX(120%); } }
+
+    .contact { animation: band-flow 16s ease-in-out infinite alternate; }
+    @keyframes band-flow {
+        from { background-position: 0% 0%; }
+        to { background-position: 100% 100%; }
+    }
+
+    @supports (animation-timeline: scroll()) {
+        .site-header::after {
+            background: linear-gradient(90deg, var(--teal), var(--violet), var(--coral), var(--amber));
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-bg i { opacity: 0.3; }
+}
+
+/* Legend swatches match the 3D bar colours */
+.sw-actual {
+    background: linear-gradient(135deg, var(--bar-lo), var(--bar-hi));
+}
+
+.sw-forecast {
+    background: linear-gradient(135deg, var(--fc-lo), var(--fc-hi));
+}

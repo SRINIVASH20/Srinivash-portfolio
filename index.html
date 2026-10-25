@@ -23,6 +23,12 @@
                 t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
             }
             document.documentElement.setAttribute('data-theme', t);
+            // Scroll reveals only run when main.js starts; if it never does, show everything.
+            document.documentElement.classList.add('js');
+            setTimeout(function () {
+                var r = document.documentElement;
+                if (!r.classList.contains('reveal-ready')) { r.classList.remove('js'); }
+            }, 3500);
         })();
     </script>
     <link rel="stylesheet" href="styles.css">
@@ -70,6 +76,7 @@
     <main id="main">
         <!-- Hero -->
         <section class="hero">
+            <div class="hero-bg" aria-hidden="true"><i></i><i></i><i></i></div>
             <div class="wrap hero-grid">
                 <div class="hero-copy">
                     <p class="hero-role">Full-stack developer, MCA graduate, Ranipet, Tamil Nadu</p>
@@ -127,7 +134,7 @@
                 <h2 id="projects-h">Projects</h2>
                 <div class="block-body">
 
-                    <article class="project">
+                    <article class="project project--energy reveal">
                         <h3>EnergySmart: electricity demand forecasting dashboard</h3>
                         <p class="project-lede">A Streamlit app that forecasts hourly electricity demand, 6 to 168 hours ahead, with a Random Forest model trained on usage history and weather data (temperature, humidity and wind speed).</p>
                         <ul class="project-points">
@@ -136,35 +143,35 @@
                             <li>Includes a Tamil Nadu EB two-month bill estimator, explanations of why usage is high or low, and energy-saving tips. Available in English and Tamil, with light and dark themes.</li>
                             <li>Built with Codex as an AI coding assistant throughout development.</li>
                         </ul>
-                        <p class="stack"><span>Built with</span> Python, Streamlit, scikit-learn, pandas, NumPy, SQLite</p>
+                        <div class="stack"><span>Built with</span><ul class="chips"><li>Python</li><li>Streamlit</li><li>scikit-learn</li><li>pandas</li><li>NumPy</li><li>SQLite</li></ul></div>
                         <p class="project-links">
                             <!-- Replace this with the EnergySmart repository link, e.g. https://github.com/SRINIVASH20/<repo-name> -->
                             <a href="https://github.com/SRINIVASH20" target="_blank" rel="noopener">View on GitHub</a>
                         </p>
                     </article>
 
-                    <article class="project">
+                    <article class="project project--chat reveal">
                         <h3>Real-time group messenger</h3>
                         <p class="project-lede">A multi-user chat application where several conversations run at the same time.</p>
                         <ul class="project-points">
                             <li>User profiles, authentication and real-time message timestamps.</li>
                             <li>MySQL schema designed and optimized to store messages and user data persistently.</li>
                         </ul>
-                        <p class="stack"><span>Built with</span> PHP, MySQL, HTML, CSS, JavaScript</p>
+                        <div class="stack"><span>Built with</span><ul class="chips"><li>PHP</li><li>MySQL</li><li>HTML</li><li>CSS</li><li>JavaScript</li></ul></div>
                         <p class="project-links">
                             <a href="https://github.com/SRINIVASH20/PHPChatApplication" target="_blank" rel="noopener">View on GitHub</a>
                             <a href="https://github.com/SRINIVASH20/PHPChatApplication/blob/main/Srini_intership%28ppt%29.pptx" target="_blank" rel="noopener">Project slides (PPT)</a>
                         </p>
                     </article>
 
-                    <article class="project">
+                    <article class="project project--iot reveal">
                         <h3>Home security server monitoring and automation</h3>
                         <p class="project-lede">A smart home security system that connects an ESP32 microcontroller with motion and environmental sensors.</p>
                         <ul class="project-points">
                             <li>PHP and MySQL web interface for real-time monitoring and automated security alerts.</li>
                             <li>Live sensor data and system status are available remotely through a browser-based dashboard.</li>
                         </ul>
-                        <p class="stack"><span>Built with</span> ESP32, PHP, MySQL, HTML, JavaScript</p>
+                        <div class="stack"><span>Built with</span><ul class="chips"><li>ESP32</li><li>PHP</li><li>MySQL</li><li>HTML</li><li>JavaScript</li></ul></div>
                         <p class="project-links">
                             <a href="https://github.com/SRINIVASH20/SecureHome" target="_blank" rel="noopener">View on GitHub</a>
                             <a href="https://github.com/SRINIVASH20/SecureHome/blob/main/srinivash_main_project.pptx" target="_blank" rel="noopener">Project slides (PPT)</a>
@@ -180,7 +187,7 @@
             <div class="wrap block-grid">
                 <h2 id="experience-h">Experience</h2>
                 <div class="block-body">
-                    <article class="role">
+                    <article class="role reveal">
                         <p class="role-when">Jun 2025 to present</p>
                         <div>
                             <h3>Freelance Software Developer</h3>
@@ -192,7 +199,7 @@
                             </ul>
                         </div>
                     </article>
-                    <article class="role">
+                    <article class="role reveal">
                         <p class="role-when">Nov 2024 to Dec 2024</p>
                         <div>
                             <h3>Web Development Intern</h3>
@@ -230,13 +237,13 @@
                 <h2 id="skills-h">Skills</h2>
                 <div class="block-body">
                     <dl class="skill-rows">
-                        <div><dt>Languages</dt><dd>Python, PHP, Java, JavaScript</dd></div>
-                        <div><dt>Web</dt><dd>HTML, CSS</dd></div>
-                        <div><dt>Databases</dt><dd>MySQL, MongoDB, SQLite, Oracle</dd></div>
-                        <div><dt>Python and ML</dt><dd>scikit-learn, pandas, NumPy, Streamlit, Random Forest models</dd></div>
-                        <div><dt>AI tools</dt><dd>AI agents and their tools, Codex, Bolt.ai</dd></div>
-                        <div><dt>Fundamentals</dt><dd>Object-oriented programming, SQL, RDBMS, data structures</dd></div>
-                        <div><dt>Tools and systems</dt><dd>XAMPP, NetBeans IDE, ESP32 microcontroller, Windows, Linux</dd></div>
+                        <div class="reveal"><dt>Languages</dt><dd><ul class="chips"><li>Python</li><li>PHP</li><li>Java</li><li>JavaScript</li></ul></dd></div>
+                        <div class="reveal"><dt>Web</dt><dd><ul class="chips"><li>HTML</li><li>CSS</li></ul></dd></div>
+                        <div class="reveal"><dt>Databases</dt><dd><ul class="chips"><li>MySQL</li><li>MongoDB</li><li>SQLite</li><li>Oracle</li></ul></dd></div>
+                        <div class="reveal"><dt>Python and ML</dt><dd><ul class="chips"><li>scikit-learn</li><li>pandas</li><li>NumPy</li><li>Streamlit</li><li>Random Forest models</li></ul></dd></div>
+                        <div class="reveal"><dt>AI tools</dt><dd><ul class="chips"><li>AI agents and their tools</li><li>Codex</li><li>Bolt.ai</li></ul></dd></div>
+                        <div class="reveal"><dt>Fundamentals</dt><dd><ul class="chips"><li>Object-oriented programming</li><li>SQL</li><li>RDBMS</li><li>data structures</li></ul></dd></div>
+                        <div class="reveal"><dt>Tools and systems</dt><dd><ul class="chips"><li>XAMPP</li><li>NetBeans IDE</li><li>ESP32 microcontroller</li><li>Windows</li><li>Linux</li></ul></dd></div>
                     </dl>
                 </div>
             </div>
@@ -248,28 +255,28 @@
                 <h2 id="education-h">Education</h2>
                 <div class="block-body">
                     <ul class="edu-list">
-                        <li>
+                        <li class="reveal">
                             <p class="edu-when">Jun 2023 to May 2025</p>
                             <div>
                                 <h3>Master of Computer Applications (MCA)</h3>
                                 <p>Adhiparasakthi College of Arts and Science, Kalavai. Score: 80%</p>
                             </div>
                         </li>
-                        <li>
+                        <li class="reveal">
                             <p class="edu-when">Jun 2020 to May 2023</p>
                             <div>
                                 <h3>Bachelor of Computer Applications (BCA)</h3>
                                 <p>Adhiparasakthi College of Arts and Science, Kalavai. Score: 85%</p>
                             </div>
                         </li>
-                        <li>
+                        <li class="reveal">
                             <p class="edu-when">2019 to 2020</p>
                             <div>
                                 <h3>HSC (12th grade)</h3>
                                 <p>Anne Marie Matric Hr. Sec. School, Thiruparkkadal. Score: 73%</p>
                             </div>
                         </li>
-                        <li>
+                        <li class="reveal">
                             <p class="edu-when">2017 to 2018</p>
                             <div>
                                 <h3>SSLC (10th grade)</h3>

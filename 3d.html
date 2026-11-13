@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srinivash K | 3D Portfolio</title>
+    <meta name="description" content="An immersive 3D version of Srinivash K's portfolio: fly through projects in Python, PHP, MySQL, IoT and machine learning. Open to entry-level developer roles.">
+    <meta name="theme-color" content="#070F16">
+    <meta property="og:title" content="Srinivash K | 3D Portfolio">
+    <meta property="og:description" content="Scroll to fly through the projects, skills and experience of a full-stack developer.">
+    <meta property="og:image" content="https://srinivash20.github.io/Srinivash-portfolio/profile.jpg">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23123038'/%3E%3Cpath d='M10 40 L22 26 L32 34 L44 16 L54 24' fill='none' stroke='%23F2A900' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="3d.css">
+</head>
+<body>
+    <a class="skip-link" href="#p-contact">Skip to contact</a>
+
+    <header class="site-header">
+        <div class="header-row">
+            <a class="brand" href="#p-home" data-go="0">Srinivash K</a>
+            <nav class="site-nav" aria-label="Main">
+                <ul>
+                    <li><a href="#p-projects" data-go="1" data-end="3">Projects</a></li>
+                    <li><a href="#p-experience" data-go="4">Experience</a></li>
+                    <li><a href="#p-skills" data-go="5">Skills</a></li>
+                    <li><a href="#p-education" data-go="6">Education</a></li>
+                    <li><a href="#p-contact" data-go="7">Contact</a></li>
+                </ul>
+            </nav>
+            <a class="classic-link" href="index.html">Classic version</a>
+        </div>
+    </header>
+
+    <div id="track" aria-hidden="true"></div>
+
+    <main id="viewport">
+        <canvas id="bg" aria-hidden="true"></canvas>
+
+        <div id="world">
+            <div class="cube" style="--x:-38vw;--y:-18vh;--z:-450px;--s:90px;--c:var(--teal);--t:26s" aria-hidden="true"><div class="cube-spin"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="cube" style="--x:-42vw;--y:22vh;--z:-1350px;--s:110px;--c:var(--coral);--t:30s" aria-hidden="true"><div class="cube-spin"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="cube" style="--x:36vw;--y:-24vh;--z:-1800px;--s:80px;--c:var(--amber);--t:22s" aria-hidden="true"><div class="cube-spin"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="cube" style="--x:42vw;--y:18vh;--z:-3060px;--s:100px;--c:var(--violet);--t:28s" aria-hidden="true"><div class="cube-spin"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="cube" style="--x:-40vw;--y:16vh;--z:-3780px;--s:80px;--c:var(--teal);--t:24s" aria-hidden="true"><div class="cube-spin"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="cube" style="--x:38vw;--y:-16vh;--z:-4320px;--s:90px;--c:var(--coral);--t:21s" aria-hidden="true"><div class="cube-spin"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="cube" style="--x:40vw;--y:20vh;--z:-5670px;--s:100px;--c:var(--teal);--t:27s" aria-hidden="true"><div class="cube-spin"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="cube" style="--x:-40vw;--y:0vh;--z:-6210px;--s:60px;--c:var(--violet);--t:23s" aria-hidden="true"><div class="cube-spin"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+
+            <section class="panel" id="p-home" data-label="Home" aria-labelledby="h-home" style="--acc:var(--teal)">
+                <div class="split two">
+                    <div>
+                        <p class="kicker">Full-stack developer, MCA graduate, Ranipet, Tamil Nadu</p>
+                        <h1 id="h-home">Srinivash K</h1>
+                        <p class="lede">I build web apps that work with real data: sensor readings from an ESP32, messages stored in MySQL, and electricity demand forecast with machine learning.</p>
+                        <div class="actions">
+                            <a class="btn btn-solid" href="Srinivash_K_Resume.pdf" download>Download resume (PDF)</a>
+                            <a class="btn btn-line" href="mailto:srinivash20042002@gmail.com">Email me</a>
+                        </div>
+                        <ul class="avail">
+                            <li>Open to entry-level Software Developer and Full Stack Developer roles</li>
+                            <li>Willing to relocate, open to on-site work</li>
+                        </ul>
+                    </div>
+                    <figure class="portrait">
+                        <div class="portrait-ring"><img src="profile.jpg" width="640" height="800" alt="Portrait of Srinivash K" decoding="async"></div>
+                        <span class="portrait-badge"><i aria-hidden="true"></i>Open to work</span>
+                    </figure>
+                </div>
+            </section>
+
+            <section class="panel" id="p-projects" data-label="EnergySmart" aria-labelledby="h-energy" style="--acc:var(--teal)">
+                <div class="split two">
+                    <div>
+                        <p class="kicker">Project 1 of 3</p>
+                        <h2 id="h-energy">EnergySmart: electricity demand forecasting</h2>
+                        <p>A Streamlit app that forecasts hourly demand, 6 to 168 hours ahead, with a Random Forest model trained on usage history and weather data.</p>
+                        <ul class="points">
+                            <li>Evaluated with MAE, RMSE and R&sup2;; compares actual and predicted use and shows Low, Medium and High usage.</li>
+                            <li>Login with hashed passwords, SQLite storage, CSV upload and export.</li>
+                            <li>Tamil Nadu EB bill estimator, English and Tamil, light and dark themes. Built with Codex as an AI coding assistant.</li>
+                        </ul>
+                        <ul class="chips"><li>Python</li><li>Streamlit</li><li>scikit-learn</li><li>pandas</li><li>NumPy</li><li>SQLite</li></ul>
+                        <p class="links"><!-- Replace with the EnergySmart repository link --><a href="https://github.com/SRINIVASH20" target="_blank" rel="noopener">View on GitHub</a></p>
+                    </div>
+                    <div>
+                        <div class="stage" id="stage">
+                            <svg class="forecast" viewBox="0 0 560 330" role="img" aria-labelledby="fcTitle fcDesc">
+                        <title id="fcTitle">Illustration of an electricity demand forecast</title>
+                        <desc id="fcDesc">A line chart of actual electricity demand with a dashed predicted line that continues into a shaded forecast window.</desc>
+                        <g class="fc-grid">
+                            <line x1="20" y1="60" x2="540" y2="60"/>
+                            <line x1="20" y1="120" x2="540" y2="120"/>
+                            <line x1="20" y1="180" x2="540" y2="180"/>
+                            <line x1="20" y1="240" x2="540" y2="240"/>
+                        </g>
+                        <rect class="fc-window" x="360" y="30" width="180" height="230"/>
+                        <line class="fc-now" x1="360" y1="30" x2="360" y2="260"/>
+                        <text class="fc-label" x="368" y="48">Forecast</text>
+                        <text class="fc-label" x="20" y="48">Actual</text>
+                        <path class="fc-area" d="M20,204 C23.3,205.0 33.3,208.7 40,210 C46.7,211.3 53.3,213.3 60,212 C66.7,210.7 73.3,207.3 80,202 C86.7,196.7 93.3,189.3 100,180 C106.7,170.7 113.3,156.7 120,146 C126.7,135.3 133.3,122.3 140,116 C146.7,109.7 153.3,106.7 160,108 C166.7,109.3 173.3,118.7 180,124 C186.7,129.3 193.3,136.0 200,140 C206.7,144.0 213.3,146.7 220,148 C226.7,149.3 233.3,149.7 240,148 C246.7,146.3 253.3,141.7 260,138 C266.7,134.3 273.3,130.3 280,126 C286.7,121.7 293.3,117.0 300,112 C306.7,107.0 313.3,98.0 320,96 C326.7,94.0 333.3,96.7 340,100 C346.7,103.3 353.3,109.3 360,116 C366.7,122.7 373.3,131.0 380,140 C386.7,149.0 393.3,160.7 400,170 C406.7,179.3 413.3,189.3 420,196 C426.7,202.7 433.3,207.0 440,210 C446.7,213.0 453.3,215.0 460,214 C466.7,213.0 473.3,209.7 480,204 C486.7,198.3 493.3,189.7 500,180 C506.7,170.3 513.3,156.3 520,146 C526.7,135.7 536.7,122.7 540,118 L540,260 L20,260 Z"/>
+                        <path class="fc-pred" d="M20,204 C23.3,205.0 33.3,208.7 40,210 C46.7,211.3 53.3,213.3 60,212 C66.7,210.7 73.3,207.3 80,202 C86.7,196.7 93.3,189.3 100,180 C106.7,170.7 113.3,156.7 120,146 C126.7,135.3 133.3,122.3 140,116 C146.7,109.7 153.3,106.7 160,108 C166.7,109.3 173.3,118.7 180,124 C186.7,129.3 193.3,136.0 200,140 C206.7,144.0 213.3,146.7 220,148 C226.7,149.3 233.3,149.7 240,148 C246.7,146.3 253.3,141.7 260,138 C266.7,134.3 273.3,130.3 280,126 C286.7,121.7 293.3,117.0 300,112 C306.7,107.0 313.3,98.0 320,96 C326.7,94.0 333.3,96.7 340,100 C346.7,103.3 353.3,109.3 360,116 C366.7,122.7 373.3,131.0 380,140 C386.7,149.0 393.3,160.7 400,170 C406.7,179.3 413.3,189.3 420,196 C426.7,202.7 433.3,207.0 440,210 C446.7,213.0 453.3,215.0 460,214 C466.7,213.0 473.3,209.7 480,204 C486.7,198.3 493.3,189.7 500,180 C506.7,170.3 513.3,156.3 520,146 C526.7,135.7 536.7,122.7 540,118"/>
+                        <path class="fc-actual" pathLength="1" d="M20,200 C23.3,201.3 33.3,205.7 40,208 C46.7,210.3 53.3,214.5 60,214 C66.7,213.5 73.3,211.0 80,205 C86.7,199.0 93.3,188.8 100,178 C106.7,167.2 113.3,151.0 120,140 C126.7,129.0 133.3,118.0 140,112 C146.7,106.0 153.3,102.7 160,104 C166.7,105.3 173.3,114.3 180,120 C186.7,125.7 193.3,133.0 200,138 C206.7,143.0 213.3,148.7 220,150 C226.7,151.3 233.3,147.7 240,146 C246.7,144.3 253.3,143.0 260,140 C266.7,137.0 273.3,133.3 280,128 C286.7,122.7 293.3,114.0 300,108 C306.7,102.0 313.3,93.7 320,92 C326.7,90.3 333.3,93.7 340,98 C346.7,102.3 356.7,114.7 360,118"/>
+                        <circle class="fc-dot" cx="360" cy="118" r="5"/>
+                        <line class="fc-axis" x1="20" y1="260" x2="540" y2="260"/>
+                        <text class="fc-tick" x="20" y="282">Past</text>
+                        <text class="fc-tick" x="360" y="282" text-anchor="middle">Now</text>
+                        <text class="fc-tick" x="540" y="282" text-anchor="end">Next 6 to 168 hours</text>
+                    </svg>
+                        </div>
+                        <p class="chart-note">Illustration of the forecast view: 168 hourly bars, 7 days by 24 hours. Not real data.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" id="p-messenger" data-label="Group messenger" aria-labelledby="h-chat" style="--acc:var(--violet)">
+                <p class="kicker">Project 2 of 3</p>
+                <h2 id="h-chat">Real-time group messenger</h2>
+                <p>A multi-user chat application where several conversations run at the same time.</p>
+                <ul class="points">
+                    <li>User profiles, authentication and real-time message timestamps.</li>
+                    <li>MySQL schema designed and optimized to store messages and user data persistently.</li>
+                </ul>
+                <ul class="chips"><li>PHP</li><li>MySQL</li><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+                <p class="links">
+                    <a href="https://github.com/SRINIVASH20/PHPChatApplication" target="_blank" rel="noopener">View on GitHub</a>
+                    <a href="https://github.com/SRINIVASH20/PHPChatApplication/blob/main/Srini_intership%28ppt%29.pptx" target="_blank" rel="noopener">Project slides (PPT)</a>
+                </p>
+            </section>
+
+            <section class="panel" id="p-security" data-label="Home security" aria-labelledby="h-iot" style="--acc:var(--coral)">
+                <p class="kicker">Project 3 of 3</p>
+                <h2 id="h-iot">Home security monitoring and automation</h2>
+                <p>A smart home security system that connects an ESP32 microcontroller with motion and environmental sensors.</p>
+                <ul class="points">
+                    <li>PHP and MySQL web interface for real-time monitoring and automated security alerts.</li>
+                    <li>Live sensor data and system status are available remotely through a browser-based dashboard.</li>
+                </ul>
+                <ul class="chips"><li>ESP32</li><li>PHP</li><li>MySQL</li><li>HTML</li><li>JavaScript</li></ul>
+                <p class="links">
+                    <a href="https://github.com/SRINIVASH20/SecureHome" target="_blank" rel="noopener">View on GitHub</a>
+                    <a href="https://github.com/SRINIVASH20/SecureHome/blob/main/srinivash_main_project.pptx" target="_blank" rel="noopener">Project slides (PPT)</a>
+                </p>
+            </section>
+
+            <section class="panel" id="p-experience" data-label="Experience" aria-labelledby="h-exp" style="--acc:var(--amber)">
+                <h2 id="h-exp">Experience</h2>
+                <div class="role">
+                    <p class="role-when">Jun 2025 to present</p>
+                    <h3>Freelance Software Developer</h3>
+                    <p class="role-where">Self-employed, remote</p>
+                    <ul class="points">
+                        <li>Design and build web applications and software for clients using Python, PHP, MySQL and JavaScript.</li>
+                        <li>Handle the whole project on my own: requirements, development, testing and delivery, using AI-assisted tools such as Codex and Bolt.ai.</li>
+                    </ul>
+                </div>
+                <div class="role">
+                    <p class="role-when">Nov 2024 to Dec 2024</p>
+                    <h3>Web Development Intern</h3>
+                    <p class="role-where">CodeBind Technologies, T. Nagar, Chennai</p>
+                    <ul class="points">
+                        <li>Built responsive, cross-browser web pages with HTML, CSS, JavaScript and PHP.</li>
+                        <li>Worked on frontend and backend features with client-project teams and saw the full software development lifecycle.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="panel" id="p-skills" data-label="Skills" aria-labelledby="h-skills" style="--acc:var(--sky)">
+                <h2 id="h-skills">Skills</h2>
+                <div class="orbit" aria-hidden="true"><div class="orbit-ring"><span style="--i:0">Python</span><span style="--i:1">PHP</span><span style="--i:2">Java</span><span style="--i:3">JavaScript</span><span style="--i:4">MySQL</span><span style="--i:5">MongoDB</span><span style="--i:6">Streamlit</span><span style="--i:7">scikit-learn</span><span style="--i:8">ESP32</span><span style="--i:9">HTML</span><span style="--i:10">CSS</span><span style="--i:11">SQLite</span></div></div>
+                <dl class="skill-grid">
+                    <div><dt>Languages</dt><dd><span class="c">Python</span><span class="c">PHP</span><span class="c">Java</span><span class="c">JavaScript</span></dd></div>
+                    <div><dt>Web</dt><dd><span class="c">HTML</span><span class="c">CSS</span></dd></div>
+                    <div><dt>Databases</dt><dd><span class="c">MySQL</span><span class="c">MongoDB</span><span class="c">SQLite</span><span class="c">Oracle</span></dd></div>
+                    <div><dt>Python and ML</dt><dd><span class="c">scikit-learn</span><span class="c">pandas</span><span class="c">NumPy</span><span class="c">Streamlit</span><span class="c">Random Forest</span></dd></div>
+                    <div><dt>AI tools</dt><dd><span class="c">AI agents</span><span class="c">Codex</span><span class="c">Bolt.ai</span></dd></div>
+                    <div><dt>Fundamentals</dt><dd><span class="c">OOP</span><span class="c">SQL</span><span class="c">RDBMS</span><span class="c">Data structures</span></dd></div>
+                    <div><dt>Tools and systems</dt><dd><span class="c">XAMPP</span><span class="c">NetBeans IDE</span><span class="c">ESP32</span><span class="c">Windows</span><span class="c">Linux</span></dd></div>
+                </dl>
+            </section>
+
+            <section class="panel" id="p-education" data-label="Education" aria-labelledby="h-edu" style="--acc:var(--mint)">
+                <h2 id="h-edu">Education</h2>
+                <div class="edu">
+                    <div><p class="when">Jun 2023 to May 2025</p><h3>MCA</h3><p>Adhiparasakthi College of Arts and Science, Kalavai. Score: 80%</p></div>
+                    <div><p class="when">Jun 2020 to May 2023</p><h3>BCA</h3><p>Adhiparasakthi College of Arts and Science, Kalavai. Score: 85%</p></div>
+                    <div><p class="when">2019 to 2020</p><h3>HSC (12th grade)</h3><p>Anne Marie Matric Hr. Sec. School, Thiruparkkadal. Score: 73%</p></div>
+                    <div><p class="when">2017 to 2018</p><h3>SSLC (10th grade)</h3><p>Anne Marie Matric Hr. Sec. School, Thiruparkkadal. Score: 82%</p></div>
+                </div>
+                <p class="extras"><strong>Certifications:</strong> NPTEL, Software Testing and Soft Skill Enhancement (2024); Core Java Programming (2023).<br><strong>Activities:</strong> Barclays Life Skills training (GTT Foundation); National Conference on AI and Machine Learning.</p>
+            </section>
+
+            <section class="panel" id="p-contact" data-label="Contact" aria-labelledby="h-contact" style="--acc:var(--amber)">
+                <h2 id="h-contact">Contact</h2>
+                <p>I'm looking for my first full-time developer role. If you have an opening, email me and I'll reply quickly.</p>
+                <a class="contact-mail" href="mailto:srinivash20042002@gmail.com">srinivash20042002@gmail.com</a>
+                <ul class="contact-list">
+                    <li><span>Phone</span> <a href="tel:+916374407328">+91 63744 07328</a></li>
+                    <li><span>GitHub</span> <a href="https://github.com/SRINIVASH20" target="_blank" rel="noopener">github.com/SRINIVASH20</a></li>
+                    <li><span>LinkedIn</span> <a href="https://www.linkedin.com/in/srinivash-k" target="_blank" rel="noopener">linkedin.com/in/srinivash-k</a></li>
+                    <li><span>Resume</span> <a href="Srinivash_K_Resume.pdf" download>Download PDF</a></li>
+                </ul>
+            </section>
+        </div>
+
+        <nav id="rail" aria-label="Sections"></nav>
+        <div id="hint" aria-hidden="true"><span class="mouse"></span>Scroll to fly through</div>
+    </main>
+
+    <footer class="site-footer"><p>&copy; 2026 Srinivash K</p></footer>
+
+    <script src="scene.js" defer></script>
+    <script src="3d.js" defer></script>
+</body>
+</html>
